@@ -1,10 +1,13 @@
 /*After some first principles reasoning about the problem I was having difficulty with passing the arithmetic operators into...well..anything. A few minutes of Google-fu led me the the built in function eval(); Should be pretty easy from here.
-
-Also plan to refactor the code after proof of concept
 */
-
-var display = $('#list');
-
+var id = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+var special = {
+  divide: '/',
+  X:'*',
+  subtract:'-',
+  add:'+',
+  clear:'',
+  }
 var str = '';
 
 var ifStr = function(str){
@@ -13,96 +16,38 @@ var ifStr = function(str){
   }
 };
 
-$('#0').click(function(){
-  ifStr(str);
-  display.append('<li>0</li>');
-  str+='0';
+var idAssign = function(id, li){
+ $(li).click(function(){
+     ifStr(str);
+     $('#display').append('<li>' + id + '</li>');
+     str+=id;
+      });
+  };
+
+var li = id.map(function(val){
+	return '#' + val;
 });
 
-$('#1').click(function(){
-   ifStr(str);
-  display.append('<li>1</li>');
-  str+='1';
-});
+for (i=0; i<id.length; i++){
+	idAssign(id[i], li[i]);
+}
 
-$('#2').click(function(){
-  ifStr(str);
-  display.append('<li>2</li>');
-  str+='2';
-});
+var sp=[];
+var sp = for (var prop in special){
+  sp.push(prop);
+};
 
-$('#3').click(function(){
-  ifStr(str);
-  display.append('<li>3</li>');
-  str+='3';
-});
+var specialAssign = function(obj, arr){
+  $(arr).click(function(){
+    ifStr(str);
+    $('#display').append('<li>' + obj[arr] + '</li>'));
+    str+=obj[arr];
+  });
+};
 
-$('#4').click(function(){
-  ifStr(str);
-  display.append('<li>4</li>');
-  str+='4';
-});
-
-$('#5').click(function(){
-  ifStr(str);
-  display.append('<li>5</li>');
-  str+='5';
-});
-
-$('#6').click(function(){
-  ifStr(str);
-  display.append('<li>6</li>');
-  str+='6';
-});
-
-$('#7').click(function(){
-  ifStr(str);
-  display.append('<li>7</li>');
-  str+='7';
-});
-
-$('#8').click(function(){
-  ifStr(str);
-  display.append('<li>8</li>');
-  str+='8';
-});
-
-$('#9').click(function(){
-  ifStr(str);
-  display.append('<li>9</li>');
-  str+='9';
-});
-
-$('#divide').click(function(){
-  ifStr(str);
-  display.append('<li>/</li>');
-  str+='/';
-});
-
-$('#X').click(function(){
-  ifStr(str);
-  display.append('<li>*</li>');
-  str+='*';
-});
-
-$('#subtract').click(function(){
-  ifStr(str);
-  display.append('<li>-</li>');
-  str+='-';
-});
-
-
-$('#add').click(function(){
-  ifStr(str);
-  display.append('<li>+</li>');
-  str+='+';
-});
-
-$('.clear').click(function(){
-  display.html('<li></li>');
-  str = '';
-});
-
+for(i=0; i<sp.length; i++){
+  specialAssign(special, sp[i]);
+}
 
 $('#vertical').click(function(){
   display.html(eval(str));
