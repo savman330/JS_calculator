@@ -1,4 +1,5 @@
-/*After some first principles reasoning about the problem I was having difficulty with passing the arithmetic operators into...well..anything. A few minutes of Google-fu led me the the built in function eval(); Should be pretty easy from here.
+/*After some first principles reasoning about the problem I was having difficulty with passing the arithmetic operators
+into...well..anything. A few minutes of Google-fu led me the the built in function eval(); Should be pretty easy from here.
 */
 var id = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 var special = {
